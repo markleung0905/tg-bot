@@ -6,9 +6,9 @@ import os
 
 load_dotenv()
 
+COUNTRY = os.getenv('COUNTRY_CODE')
 # Feed URL
-FEED_URL = 'https://rpilocator.com/feed/?country=UK'
-# FEED_URL = 'https://hwlocator.com/feed/'
+feedURL = f'https://rpilocator.com/feed/?country={COUNTRY}'
 
 # After creating your pushbullet account, create an 
 # Access Token and enter it here
@@ -32,8 +32,7 @@ def formatMessage(entry):
     title = f"{entry.title}\n"
     url = f"{entry.link}\n"
     message = title + url
-
-    res = {'chat_id':CHANNEL_ID, 'text':message}
+    res = {'chat_id':CHANNEL_ID, 'disable_web_page_preview':'true', 'text':message}
     return res
 
 
@@ -41,7 +40,7 @@ def formatMessage(entry):
 control = []
 
 # Fetch the feed
-f = feedparser.parse(FEED_URL)
+f = feedparser.parse(feedURL)
 
 # If there are entries in the feed, add entry guid to the control variable
 if f.entries:
@@ -50,9 +49,10 @@ if f.entries:
 #Only wait 30 seconds after initial run.
 time.sleep(30)
 
+
 while True:
     # Fetch the feed again, and again, and again...
-    f = feedparser.parse(FEED_URL)
+    f = feedparser.parse(feedURL)
 
     # Compare feed entries to control list.
     # If there are new entries, send a message/push
