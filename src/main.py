@@ -9,10 +9,10 @@ FEED_URL = 'https://rpilocator.com/feed/'
 
 # After creating your pushbullet account, create an 
 # Access Token and enter it here
-BOT_TOKEN = '5719038324:AAECKDgUduFUyd-fww1nxHNi6rS7TyN2aFo'
+BOT_TOKEN = ''
 
 # Customize the message title
-CHANNEL_ID = '5057299340'
+CHANNEL_ID = ''
 
 apiURL = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage'
 
