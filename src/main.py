@@ -1,18 +1,21 @@
 import requests
 import feedparser
 import time
+from dotenv import load_dotenv
+import os
 
+load_dotenv('.env')
 
 # Feed URL
-FEED_URL = 'https://rpilocator.com/feed/'
+FEED_URL = 'https://rpilocator.com/feed/?country=UK'
 # FEED_URL = 'https://hwlocator.com/feed/'
 
 # After creating your pushbullet account, create an 
 # Access Token and enter it here
-BOT_TOKEN = ''
+BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
 # Customize the message title
-CHANNEL_ID = ''
+CHANNEL_ID = os.environ.get('CHANNEL_ID')
 
 apiURL = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage'
 
