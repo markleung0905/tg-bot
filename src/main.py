@@ -19,6 +19,8 @@ CHANNEL_ID = os.getenv('CHANNEL_ID')
 
 apiURL = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage'
 
+REST_INTERVAL = os.getenv('REST__INTERVAL')
+
 # Send the push/message to all devices connected to Pushbullet
 def send_message(message):
     try:
@@ -47,7 +49,7 @@ if f.entries:
     for entries in f.entries:
         control.append(entries.id)
 #Only wait 30 seconds after initial run.
-time.sleep(30)
+time.sleep(REST_INTERVAL)
 
 
 while True:
@@ -67,4 +69,4 @@ while True:
             # Add entry guid to the control variable
             control.append(entries.id)
 
-    time.sleep(59)
+    time.sleep(REST_INTERVAL)
