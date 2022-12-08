@@ -49,7 +49,7 @@ if f.entries:
     for entries in f.entries:
         control.append(entries.id)
 #Only wait 30 seconds after initial run.
-time.sleep(REST_INTERVAL)
+time.sleep(int(REST_INTERVAL))
 
 
 while True:
@@ -69,4 +69,4 @@ while True:
             # Add entry guid to the control variable
             control.append(entries.id)
 
-    time.sleep(REST_INTERVAL)
+    time.sleep(int(REST_INTERVAL))
