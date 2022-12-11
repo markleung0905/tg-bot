@@ -45,9 +45,9 @@ control = []
 f = feedparser.parse(feedURL)
 
 # If there are entries in the feed, add entry guid to the control variable
-if f.entries:
-    for entries in f.entries:
-        control.append(entries.id)
+if len(f.entries) > 0:
+    for entry in f.entries:
+        control.append(entry.id)
 #Only wait 30 seconds after initial run.
 time.sleep(int(REST_INTERVAL))
 
@@ -59,14 +59,14 @@ while True:
     # Compare feed entries to control list.
     # If there are new entries, send a message/push
     # and add the new entry to control variable
-    for entries in f.entries:
-        if entries.id not in control:
+    for entry in f.entries:
+        if entry.id not in control:
 
-            message = formatMessage(entries)
+            message = formatMessage(entry)
 
             send_message(message)
 
             # Add entry guid to the control variable
-            control.append(entries.id)
+            control.append(entry.id)
 
     time.sleep(int(REST_INTERVAL))
